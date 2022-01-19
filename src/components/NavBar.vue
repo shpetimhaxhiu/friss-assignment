@@ -1,9 +1,9 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <a class="navbar-brand" href="#">
+      <router-link to="/" class="navbar-brand">
       <img src="@/assets/friss-logo.png" alt="" height="45">
-    </a>
+      </router-link>
       <button
         class="navbar-toggler"
         type="button"
@@ -18,10 +18,12 @@
       <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <router-link class="nav-link" to="/formulas">List of Formulas</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/create">Create New</router-link>
           </li>
         </ul>
-       
       </div>
     </div>
   </nav>
