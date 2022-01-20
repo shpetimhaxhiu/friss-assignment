@@ -80,10 +80,11 @@ export default {
       formulas: [],
     };
   },
-  created() {
+  mounted() {
     axios.get("http://localhost:3000/formulas/").then((response) => {
       this.formulas = response.data;
-    });
+    })
+    .catch(this.handleErrors);
   },
   methods: {
     riskClass(value) {

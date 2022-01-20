@@ -1,17 +1,6 @@
 {
   "formulas": [
     {
-      "id": 5,
-      "makeName": "Land Rover",
-      "modelName": "LR4",
-      "yearComparisonType": "<",
-      "year": 2010,
-      "fuelType": [
-        "diesel"
-      ],
-      "risk": "high"
-    },
-    {
       "id": 6,
       "makeName": "Saturn",
       "modelName": "Ion",
@@ -32,17 +21,6 @@
         "diesel"
       ],
       "risk": "low"
-    },
-    {
-      "id": 20,
-      "makeName": "Mercury",
-      "modelName": "Sable",
-      "yearComparisonType": "=",
-      "year": 2009,
-      "fuelType": [
-        "electric"
-      ],
-      "risk": "high"
     },
     {
       "makeName": "",
@@ -87,17 +65,52 @@
       "id": 34
     },
     {
-      "makeName": "JAGUAR",
+      "makeName": "ASTON MARTIN",
+      "modelName": "",
+      "yearComparisonType": false,
+      "year": false,
+      "fuelType": [],
+      "risk": "medium",
+      "id": 37
+    },
+    {
+      "makeName": "TOYOTA",
+      "modelName": "",
+      "yearComparisonType": false,
+      "year": false,
+      "fuelType": [],
+      "risk": "medium",
+      "id": 38
+    },
+    {
+      "makeName": "TESLA",
+      "modelName": "Model 3",
+      "yearComparisonType": false,
+      "year": false,
+      "fuelType": [
+        "petrol",
+        "electric"
+      ],
+      "risk": "medium",
+      "id": 39
+    },
+    {
+      "makeName": "ASTON MARTIN",
+      "modelName": "",
+      "yearComparisonType": false,
+      "year": false,
+      "fuelType": [],
+      "risk": "medium",
+      "id": 40
+    },
+    {
+      "makeName": "",
       "modelName": "",
       "yearComparisonType": "<",
-      "year": 2005,
-      "fuelType": [
-        "diesel",
-        "electric",
-        "petrol"
-      ],
+      "year": 2000,
+      "fuelType": [],
       "risk": "high",
-      "id": 36
+      "id": 41
     }
   ]
 }
