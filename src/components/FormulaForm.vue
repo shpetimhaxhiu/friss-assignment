@@ -1,6 +1,5 @@
 <template>
-  <div class="container mt-3" id="formulas-form">
-    <h2 class="mb-5">Create new Formula</h2>
+
     <form @submit.prevent @submit="checkForm">
       <div class="mb-3 row">
         <p class="col-8">
@@ -182,7 +181,6 @@
       </div>
       <button type="submit" class="btn btn-primary">Create</button>
     </form>
-  </div>
 </template>
 
 
