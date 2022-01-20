@@ -1,17 +1,6 @@
 {
   "formulas": [
     {
-      "id": 6,
-      "makeName": "Saturn",
-      "modelName": "Ion",
-      "yearComparisonType": ">",
-      "year": 2004,
-      "fuelType": [
-        "electric"
-      ],
-      "risk": "medium"
-    },
-    {
       "id": 7,
       "makeName": "Maserati",
       "modelName": "Spyder",
@@ -111,6 +100,15 @@
       "fuelType": [],
       "risk": "high",
       "id": 41
+    },
+    {
+      "makeName": "ASTON MARTIN",
+      "modelName": "",
+      "yearComparisonType": false,
+      "year": false,
+      "fuelType": [],
+      "risk": "medium",
+      "id": 42
     }
   ]
 }

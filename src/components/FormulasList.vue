@@ -1,6 +1,5 @@
 <template>
-  <div class="container mt-3" id="formulas-form">
-    <h2 class="mb-5">List of Formulas</h2>
+
     <div class="table-responsive">
       <table class="table table-hover">
         <thead>
@@ -67,7 +66,6 @@
         </tbody>
       </table>
     </div>
-  </div>
 </template>
 
 
