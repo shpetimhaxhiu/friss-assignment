@@ -25,6 +25,7 @@
               v-for="make in makes"
               :key="make.MakeId"
               :value="make.MakeId"
+              v-bind:data-makename="make.MakeName"
             >
               {{ make.MakeName }}
             </option>
@@ -52,6 +53,7 @@
               v-for="model in models"
               :key="model.Model_ID"
               :value="model.Model_ID"
+              v-bind:data-modelname="model.Model_Name"
             >
               {{ model.Model_Name }}
             </option>
@@ -195,11 +197,13 @@ export default {
   name: "FormulaForm",
   data() {
     return {
-        formError: false,
+      formError: false,
       makes: [],
       models: [],
       selectedMake: "0",
+      selectedMakeName: "",
       selectedModel: "0",
+      selectedModelName: "",
       comparisonType: "0",
       year: 0,
       fuelType: [],
@@ -229,7 +233,12 @@ export default {
   },
   methods: {
     selectMake(event) {
+      if(event.target.options.selectedIndex > -1) {
+            this.selectedMakeName = event.target.options[event.target.options.selectedIndex].dataset.makename;
+      }
+      
       this.selectedMake = event.target.value;
+      
       axios
         .get(
           "https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeId/" +
@@ -244,6 +253,9 @@ export default {
         });
     },
     selectModel(event) {
+      if(event.target.options.selectedIndex > -1) {
+            this.selectedMakeName = event.target.options[event.target.options.selectedIndex].dataset.modelname;
+      }
       this.selectedModel = event.target.value;
     },
     checkForm(){
@@ -253,6 +265,9 @@ export default {
             this.formError = false;
             alert("Form ready to be submitted");
         }
+    },
+    submitForm(){
+      axios.post("")
     }
   },
 };
