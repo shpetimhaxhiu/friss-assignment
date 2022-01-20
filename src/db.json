@@ -109,6 +109,51 @@
       "fuelType": [],
       "risk": "medium",
       "id": 42
+    },
+    {
+      "makeName": "TESLA",
+      "modelName": "",
+      "yearComparisonType": false,
+      "year": false,
+      "fuelType": [],
+      "risk": "medium",
+      "id": 43
+    },
+    {
+      "makeName": "JAGUAR",
+      "modelName": "",
+      "yearComparisonType": false,
+      "year": false,
+      "fuelType": [],
+      "risk": "medium",
+      "id": 44
+    },
+    {
+      "makeName": "ASTON MARTIN",
+      "modelName": "",
+      "yearComparisonType": false,
+      "year": false,
+      "fuelType": [],
+      "risk": "medium",
+      "id": 45
+    },
+    {
+      "makeName": "MASERATI",
+      "modelName": "",
+      "yearComparisonType": false,
+      "year": false,
+      "fuelType": [],
+      "risk": "medium",
+      "id": 46
+    },
+    {
+      "makeName": "MASERATI",
+      "modelName": "",
+      "yearComparisonType": false,
+      "year": false,
+      "fuelType": [],
+      "risk": "medium",
+      "id": 47
     }
   ]
 }
