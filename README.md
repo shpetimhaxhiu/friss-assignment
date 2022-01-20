@@ -1,4 +1,8 @@
 # friss-assignment
+There is a simple JSON DB where formulas are being save.
+
+Please install and run json-server
+
 
 ## Project setup
 ```
