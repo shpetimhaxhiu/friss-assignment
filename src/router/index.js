@@ -8,12 +8,12 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'List of Formulas',
+    name: 'Home',
     component: FormulasList
   },
   {
     path: '/formulas',
-    name: 'List of Formulas',
+    name: 'List',
     component: FormulasList
   },
   {

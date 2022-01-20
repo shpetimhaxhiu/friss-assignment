@@ -14,7 +14,6 @@
         </thead>
         <tbody>
           <tr
-            v-bind:formulas="formulas"
             v-for="formula in formulas"
             :key="formula.id"
           >
@@ -83,7 +82,6 @@ export default {
   },
   created() {
     axios.get("http://localhost:3000/formulas/").then((response) => {
-      console.log(response.data);
       this.formulas = response.data;
     });
   },
@@ -109,6 +107,9 @@ export default {
             if (~index)
               // if the post exists in array
               this.formulas.splice(index, 1); //delete the post
+          })
+          .catch((error) =>{
+            console.error(error)
           });
       }
     },

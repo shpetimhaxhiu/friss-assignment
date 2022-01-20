@@ -34,3 +34,10 @@ export default {
   name: "NavBar",
 };
 </script>
+
+<style>
+li.nav-item .router-link-active {
+  font-weight:500;
+  color:white !important;
+}
+</style>

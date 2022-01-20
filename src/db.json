@@ -1,17 +1,6 @@
 {
   "formulas": [
     {
-      "id": 4,
-      "makeName": "Mazda",
-      "modelName": "626",
-      "yearComparisonType": "<",
-      "year": 1995,
-      "fuelType": [
-        "petrol"
-      ],
-      "risk": "low"
-    },
-    {
       "id": 5,
       "makeName": "Land Rover",
       "modelName": "LR4",
@@ -96,15 +85,6 @@
       ],
       "risk": "high",
       "id": 34
-    },
-    {
-      "makeName": "ASTON MARTIN",
-      "modelName": "",
-      "yearComparisonType": false,
-      "year": false,
-      "fuelType": [],
-      "risk": "medium",
-      "id": 35
     },
     {
       "makeName": "JAGUAR",
