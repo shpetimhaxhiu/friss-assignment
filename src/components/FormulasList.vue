@@ -18,13 +18,38 @@
             v-for="formula in formulas"
             :key="formula.id"
           >
-            <td>{{ formula.makeName }}</td>
-            <td>{{ formula.modelName }}</td>
-            <td>{{ formula.yearComparisonType }} {{ formula.year }}</td>
-            <td>{{ formula.fuelType }}</td>
-            <td><span class="badge" v-bind:class="riskClass(formula.risk)">{{ formula.risk }}</span></td>
             <td>
-              <button type="button" class="btn btn-sm btn-danger">
+              {{ formula.makeName === "" ? "Any Make" : formula.makeName }}
+            </td>
+            <td>
+              {{ formula.modelName === "" ? "Any Model" : formula.modelName }}
+            </td>
+            <td>
+              {{
+                formula.yearComparisonType === false || formula.year === false
+                  ? "Any Year"
+                  : formula.yearComparisonType + " " + formula.year
+              }}
+            </td>
+            <td>
+              <span v-if="formula.fuelType.length === 0"> Any fuel type </span>
+              <span v-else>
+                <span v-for="(ft, index) in formula.fuelType" :key="index">
+                  {{ ft }}<br />
+                </span>
+              </span>
+            </td>
+            <td>
+              <span class="badge" v-bind:class="riskClass(formula.risk)">{{
+                formula.risk
+              }}</span>
+            </td>
+            <td>
+              <button
+                type="button"
+                class="btn btn-sm btn-danger"
+                @click="deleteFormula(formula.id)"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -63,17 +88,30 @@ export default {
     });
   },
   methods: {
-      riskClass(value){
-          if(value === "high") {
-              return 'bg-danger';
-          }
-          else if(value === "medium") {
-              return 'bg-warning';
-          }
-          else {
-              return 'bg-info';
-          }
+    riskClass(value) {
+      if (value === "high") {
+        return "bg-danger";
+      } else if (value === "medium") {
+        return "bg-warning";
+      } else {
+        return "bg-info";
       }
-  }
+    },
+    deleteFormula(id) {
+      if (confirm("Are you sure you want to delete this rule?")) {
+        axios
+          .delete("http://localhost:3000/formulas/" + id)
+          .then((response) => {
+            console.log(response);
+            const index = this.formulas.findIndex(
+              (formula) => formula.id === id
+            ); // find the post index
+            if (~index)
+              // if the post exists in array
+              this.formulas.splice(index, 1); //delete the post
+          });
+      }
+    },
+  },
 };
 </script>

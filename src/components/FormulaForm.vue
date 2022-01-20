@@ -263,12 +263,43 @@ export default {
             this.formError = true;
         } else {
             this.formError = false;
-            alert("Form ready to be submitted");
+            // alert("Form ready to be submitted");
+            this.submitForm();
         }
     },
     submitForm(){
-      axios.post("")
-    }
+      axios.post("http://localhost:3000/formulas", 
+       {
+         "makeName": this.selectedMakeName != '0' ? this.selectedMakeName : false ,
+         "modelName": this.selectedModelName != '0' ? this.selectedModelName : false ,
+         "yearComparisonType": this.comparisonType != '0' && this.year != '0' ? this.comparisonType : false ,
+         "year": this.year != '0' ? this.year : false ,
+         "fuelType": this.fuelType,
+         "risk": this.risk
+       }
+      )
+      .then((response) => {
+        alert("You have succsesfully created new rule!")
+        this.resetForm();
+        console.log(response)
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    },
+    resetForm(){
+      this.formError = false
+      this.makes = []
+      this.models = []
+      this.selectedMake = "0"
+      this.selectedMakeName = ""
+      this.selectedModel = "0"
+      this.selectedModelName = ""
+      this.comparisonType = "0"
+      this.year = 0
+      this.fuelType = []
+      this.risk = "medium"
+    },
   },
 };
 </script>
