@@ -2,11 +2,15 @@
   <div class="container mt-3" id="formulas-form">
     <h2 class="mb-5">Create new Formula</h2>
     <form @submit.prevent @submit="checkForm">
-        <div class="mb-3 row">
+      <div class="mb-3 row">
         <p class="col-8">
-            Use the form below to a create new risk calculation and categorization based on vehicle parameters. <br><span v-bind:class="{'text-danger' : formError}">Please note that you must select at least one parameter!</span>
+          Use the form below to a create new risk calculation and categorization
+          based on vehicle parameters. <br /><span
+            v-bind:class="{ 'text-danger': formError }"
+            >Please note that you must select at least one parameter!</span
+          >
         </p>
-        </div>
+      </div>
       <div class="mb-3 row">
         <label
           for="exampleInputEmail1"
@@ -15,7 +19,7 @@
         >
         <div class="col-sm-6">
           <select
-            v-bind:makes="makes"
+            v-model="selectedMake"
             class="form-select"
             aria-label="Default select example"
             @change="selectMake($event)"
@@ -43,7 +47,7 @@
         >
         <div class="col-sm-6">
           <select
-            v-bind:models="models"
+            v-model="selectedModel"
             class="form-select"
             aria-label="Default select example"
             @change="selectModel($event)"
@@ -81,7 +85,7 @@
               <option value="=">&#61; (Equal to)</option>
             </select>
             <select class="form-control" v-model="year">
-                <option value="0">Any Year</option>
+              <option value="0">Any Year</option>
               <option v-for="year in years" :key="year" :value="year">
                 {{ year }}
               </option>
@@ -132,7 +136,7 @@
           </div>
         </div>
       </div>
-      
+
       <div class="mb-3 row">
         <label
           for="exampleInputEmail1"
@@ -141,44 +145,38 @@
         >
         <div class="col-sm-6">
           <div class="form-check">
-            <input v-model="risk"
+            <input
+              v-model="risk"
               class="form-check-input"
               type="radio"
               name="low"
               id="low"
-              value="low"     
+              value="low"
             />
-            <label class="form-check-label" for="low">
-              Low
-            </label>
+            <label class="form-check-label" for="low"> Low </label>
           </div>
           <div class="form-check">
             <input
-             v-model="risk"
+              v-model="risk"
               class="form-check-input"
               type="radio"
               name="medium"
               id="medium"
-              
-              value="medium"     
+              value="medium"
               checked="checked"
             />
-            <label class="form-check-label" for="medium">
-              Medium
-            </label>
+            <label class="form-check-label" for="medium"> Medium </label>
           </div>
           <div class="form-check">
             <input
-             v-model="risk"
+              v-model="risk"
               class="form-check-input"
               type="radio"
               name="high"
-              id="high" 
-              value="high"             
+              id="high"
+              value="high"
             />
-            <label class="form-check-label" for="high">
-              High
-            </label>
+            <label class="form-check-label" for="high"> High </label>
           </div>
         </div>
       </div>
@@ -218,9 +216,7 @@ export default {
       .then((response) => {
         this.makes = response.data.Results;
       })
-      .catch((error) => {
-        console.error(error);
-      });
+      .catch(this.handleErrors);
   },
   computed: {
     years() {
@@ -233,12 +229,15 @@ export default {
   },
   methods: {
     selectMake(event) {
-      if(event.target.options.selectedIndex > -1) {
-            this.selectedMakeName = event.target.options[event.target.options.selectedIndex].dataset.makename;
+      if (event.target.options.selectedIndex > -1) {
+        this.selectedMakeName =
+          event.target.options[
+            event.target.options.selectedIndex
+          ].dataset.makename;
       }
-      
+
       this.selectedMake = event.target.value;
-      
+
       axios
         .get(
           "https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeId/" +
@@ -248,57 +247,66 @@ export default {
         .then((response) => {
           this.models = response.data.Results;
         })
-        .catch((error) => {
-          console.error(error);
-        });
+      .catch(this.handleErrors);
     },
     selectModel(event) {
-      if(event.target.options.selectedIndex > -1) {
-            this.selectedMakeName = event.target.options[event.target.options.selectedIndex].dataset.modelname;
+      if (event.target.options.selectedIndex > -1) {
+        this.selectedModelName =
+          event.target.options[
+            event.target.options.selectedIndex
+          ].dataset.modelname;
       }
       this.selectedModel = event.target.value;
     },
-    checkForm(){
-        if(this.selectedMake === "0" && this.selectedModel === "0" && this.year === 0 && this.fuelType.length === 0) {
-            this.formError = true;
-        } else {
-            this.formError = false;
-            // alert("Form ready to be submitted");
-            this.submitForm();
-        }
+    checkForm() {
+      if (
+        this.selectedMake === "0" &&
+        this.selectedModel === "0" &&
+        this.year === 0 &&
+        this.fuelType.length === 0
+      ) {
+        this.formError = true;
+      } else {
+        this.formError = false;
+        this.submitForm();
+      }
     },
-    submitForm(){
-      axios.post("http://localhost:3000/formulas", 
-       {
-         "makeName": this.selectedMakeName != '0' ? this.selectedMakeName : false ,
-         "modelName": this.selectedModelName != '0' ? this.selectedModelName : false ,
-         "yearComparisonType": this.comparisonType != '0' && this.year != '0' ? this.comparisonType : false ,
-         "year": this.year != '0' ? this.year : false ,
-         "fuelType": this.fuelType,
-         "risk": this.risk
-       }
-      )
-      .then((response) => {
-        alert("You have succsesfully created new rule!")
-        this.resetForm();
-        console.log(response)
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    submitForm() {
+      axios
+        .post("http://localhost:3000/formulas", {
+          makeName:
+            this.selectedMakeName != "0" ? this.selectedMakeName : false,
+          modelName:
+            this.selectedModelName != "0" ? this.selectedModelName : false,
+          yearComparisonType:
+            this.comparisonType != "0" && this.year != "0"
+              ? this.comparisonType
+              : false,
+          year: this.year != "0" ? this.year : false,
+          fuelType: this.fuelType,
+          risk: this.risk,
+        })
+        .then((response) => {
+          if (response.status === 201) {
+            alert("You have succsesfully created new rule!");
+            this.resetForm();
+          }
+          console.log("response");
+        })
+      .catch(this.handleErrors);
     },
-    resetForm(){
-      this.formError = false
-      this.makes = []
-      this.models = []
-      this.selectedMake = "0"
-      this.selectedMakeName = ""
-      this.selectedModel = "0"
-      this.selectedModelName = ""
-      this.comparisonType = "0"
-      this.year = 0
-      this.fuelType = []
-      this.risk = "medium"
+    resetForm() {
+      this.formError = false;
+      this.makes = [];
+      this.models = [];
+      this.selectedMake = "0";
+      this.selectedMakeName = "";
+      this.selectedModel = "0";
+      this.selectedModelName = "";
+      this.comparisonType = "0";
+      this.year = 0;
+      this.fuelType = [];
+      this.risk = "medium";
     },
   },
 };
