@@ -1,17 +1,6 @@
 {
   "formulas": [
     {
-      "id": 7,
-      "makeName": "Maserati",
-      "modelName": "Spyder",
-      "yearComparisonType": ">",
-      "year": 2004,
-      "fuelType": [
-        "diesel"
-      ],
-      "risk": "low"
-    },
-    {
       "makeName": "",
       "modelName": "",
       "yearComparisonType": false,
