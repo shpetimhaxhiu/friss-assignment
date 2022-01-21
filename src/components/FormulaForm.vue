@@ -4,10 +4,19 @@
       <div class="mb-3 row">
         <p class="col-8">
           Use the form below to a create new risk calculation and categorization
-          based on vehicle parameters. <br /><span
-            v-bind:class="{ 'text-danger': formError }"
+          based on vehicle parameters. <span
             >Please note that you must select at least one parameter!</span
           >
+              <b-alert
+            :show="dismissCountDown"
+      
+      variant="danger"
+      class="mt-4"
+      @dismissed="dismissCountDown=0"
+      @dismiss-count-down="countDownChanged"
+    >
+      You must select at least one parameter!
+    </b-alert>
         </p>
       </div>
       <div class="mb-3 row">
@@ -204,6 +213,8 @@ export default {
       year: 0,
       fuelType: [],
       risk: "medium",
+        dismissSecs: 3,
+        dismissCountDown: 0
     };
   },
   created() {
@@ -226,6 +237,12 @@ export default {
     },
   },
   methods: {
+    countDownChanged(dismissCountDown) {
+        this.dismissCountDown = dismissCountDown
+      },
+      showAlert() {
+       this.dismissCountDown = this.dismissSecs
+      },
     selectMake(event) {
       if (event.target.options.selectedIndex > -1) {
         this.selectedMakeName =
@@ -263,12 +280,36 @@ export default {
         this.year === 0 &&
         this.fuelType.length === 0
       ) {
+        // this.$bvModal.msgBoxConfirm('Do you really want to delete this rule?', {
+        //   title: 'Please Confirm',
+        //   okVariant: 'danger',
+        //   hideHeaderClose: true,
+        //   centered: true,
+        //   cancelDisabled: true,
+        //   // hide-footer: true
+        // })
+          // .then(value => {
+          //   if(value === true) {
+          //     this.deleteFormula(id);
+          //   }
+          // })
+          // .catch(this.handleErrors)
         this.formError = true;
+        // this.makeToast('danger')
+        this.showAlert()
+        
       } else {
         this.formError = false;
         this.submitForm();
       }
     },
+    makeToast(variant = null) {
+        this.$bvToast.toast('Toast body content', {
+          title: `Variant ${variant || 'default'}`,
+          variant: variant,
+          solid: true
+        })
+      },
     submitForm() {
       axios
         .post("http://localhost:3000/formulas", {
