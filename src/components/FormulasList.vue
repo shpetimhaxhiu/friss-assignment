@@ -42,7 +42,7 @@
             <button
               type="button"
               class="btn btn-sm btn-danger"
-              @click="deleteFormula(formula.id)"
+               @click="confirmDelete(formula.id)"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -73,6 +73,7 @@ export default {
   data() {
     return {
       formulas: [],
+      boxOne: '',
     };
   },
   mounted() {
@@ -84,6 +85,20 @@ export default {
       .catch(this.handleErrors);
   },
   methods: {
+    confirmDelete(id) {
+        this.$bvModal.msgBoxConfirm('Do you really want to delete this rule?', {
+          title: 'Please Confirm',
+          okVariant: 'danger',
+          hideHeaderClose: false,
+          centered: true
+        })
+          .then(value => {
+            if(value === true) {
+              this.deleteFormula(id);
+            }
+          })
+          .catch(this.handleErrors)
+      },
     riskClass(value) {
       if (value === "high") {
         return "bg-danger";
@@ -92,9 +107,8 @@ export default {
       } else {
         return "bg-info";
       }
-    },
+    },    
     deleteFormula(id) {
-      if (confirm("Are you sure you want to delete this rule?")) {
         axios
           .delete("http://localhost:3000/formulas/" + id)
           .then((response) => {
@@ -106,7 +120,6 @@ export default {
               this.formulas.splice(index, 1);
           })
           .catch(this.handleErrors);
-      }
     },
   },
 };
