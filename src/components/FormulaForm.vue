@@ -21,7 +21,6 @@
           class="mt-4"
           @dismissed="dismissCountDownSuccess = 0"
           @dismiss-count-down="2"
-
         >
           Your rule has been created!
         </b-alert>
@@ -40,10 +39,9 @@
         >
           <option selected="selected" value="0">Any make</option>
           <option
-            v-for="make in makes"
+            v-for="make in allMakes"
             :key="make.MakeId"
             :value="make.MakeId"
-            v-bind:data-makename="make.MakeName"
           >
             {{ make.MakeName }}
           </option>
@@ -67,15 +65,16 @@
         >
           <option selected="selected" value="0">Any model</option>
           <option
-            v-for="model in models"
+            v-for="model in allModels"
             :key="model.Model_ID"
             :value="model.Model_ID"
-            v-bind:data-modelname="model.Model_Name"
           >
             {{ model.Model_Name }}
           </option>
         </select>
-        <div id="selectedModel" class="form-text">Select vehicle model name.</div>
+        <div id="selectedModel" class="form-text">
+          Select vehicle model name.
+        </div>
       </div>
     </div>
     <div class="mb-3 row">
@@ -147,9 +146,7 @@
     </div>
 
     <div class="mb-3 row">
-      <label for="risk" class="form-label col-sm-2 col-form-label"
-        >Risk</label
-      >
+      <label for="risk" class="form-label col-sm-2 col-form-label">Risk</label>
       <div class="col-sm-6">
         <div class="form-check">
           <input
@@ -192,50 +189,12 @@
 
 
 <script>
-import axios from "axios";
-
-// axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "FormulaForm",
-  data() {
-    return {
-      formError: false,
-      makes: [],
-      models: [],
-      selectedMake: "0",
-      selectedMakeName: "",
-      selectedModel: "0",
-      selectedModelName: "",
-      comparisonType: "0",
-      year: 0,
-      fuelType: [],
-      risk: "medium",
-      dismissSecs: 3,
-      dismissCountDown: 0,
-      dismissCountDownSuccess: 0,
-    };
-  },
-  created() {
-    axios
-      .get(
-        "https://vpic.nhtsa.dot.gov/api/vehicles/GetMakesForVehicleType/car?format=json"
-      )
-      .then((response) => {
-        this.makes = response.data.Results;
-      })
-      .catch(this.handleErrors);
-  },
-  computed: {
-    years() {
-      const year = new Date().getFullYear();
-      return Array.from(
-        { length: year - 1900 },
-        (value, index) => 1901 + index
-      );
-    },
-  },
   methods: {
+    ...mapActions(["addFormula", "fetchMakes", "fetchModels"]),
     // alerts methods
     countDownChanged(dismissCountDown) {
       this.dismissCountDown = dismissCountDown;
@@ -246,36 +205,22 @@ export default {
     showSuccess() {
       this.dismissCountDownSuccess = this.dismissSecs;
     },
-
-    // populating makes and models
     selectMake(event) {
-      if (event.target.options.selectedIndex > -1) {
-        this.selectedMakeName =
-          event.target.options[
-            event.target.options.selectedIndex
-          ].dataset.makename;
-      }
-
+      // taking the name from option
+      this.selectedMakeName =
+        event.target.options[event.target.options.selectedIndex].innerText;
+      // getting the value from option
       this.selectedMake = event.target.value;
 
-      axios
-        .get(
-          "https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeId/" +
-            this.selectedMake +
-            "?format=json"
-        )
-        .then((response) => {
-          this.models = response.data.Results;
-        })
-        .catch(this.handleErrors);
+      // feth models based on make
+      this.fetchModels(this.selectedMake);
+
+      // reset model selection
+      this.selectedModel = "0";
     },
     selectModel(event) {
-      if (event.target.options.selectedIndex > -1) {
-        this.selectedModelName =
-          event.target.options[
-            event.target.options.selectedIndex
-          ].dataset.modelname;
-      }
+      this.selectedModelName =
+        event.target.options[event.target.options.selectedIndex].innerText;
       this.selectedModel = event.target.value;
     },
     // validating form
@@ -292,34 +237,23 @@ export default {
         this.formError = false;
         this.submitForm();
         this.showSuccess();
-        // this.succsesfullyCreated = true;
       }
     },
     // submiting form
     submitForm() {
-      axios
-        .post("http://localhost:3000/formulas", {
-          makeName:
-            this.selectedMakeName != "0" ? this.selectedMakeName : false,
-          modelName:
-            this.selectedModelName != "0" ? this.selectedModelName : false,
-          yearComparisonType:
-            this.comparisonType != "0" && this.year != "0"
-              ? this.comparisonType
-              : false,
-          year: this.year != "0" ? this.year : false,
-          fuelType: this.fuelType,
-          risk: this.risk,
-        })
-        .then((response) => {
-          if (response.status === 201) {
-            // alert("You have succsesfully created new rule!");
+      this.addFormula({
+        makeName: this.selectedMakeName != "0" ? this.selectedMakeName : "",
+        modelName: this.selectedModelName != "0" ? this.selectedModelName : "",
+        yearComparisonType:
+          this.comparisonType != "0" && this.year != "0"
+            ? this.comparisonType
+            : false,
+        year: this.year != "0" ? this.year : false,
+        fuelType: this.fuelType,
+        risk: this.risk,
+      });
 
-            this.resetForm();
-          }
-          console.log("response");
-        })
-        .catch(this.handleErrors);
+      this.resetForm();
     },
     resetForm() {
       this.formError = false;
@@ -331,6 +265,38 @@ export default {
       this.year = 0;
       this.fuelType = [];
       this.risk = "medium";
+    },
+  },
+  data() {
+    return {
+      formError: false,
+
+      selectedMake: "0",
+      selectedMakeName: "",
+      selectedModel: "0",
+      selectedModelName: "",
+      comparisonType: "0",
+      year: 0,
+      fuelType: [],
+      risk: "medium",
+      dismissSecs: 3,
+      dismissCountDown: 0,
+      dismissCountDownSuccess: 0,
+    };
+  },
+  created() {
+    this.fetchMakes();
+  },
+
+  computed: {
+    ...mapGetters(["allModels", "allMakes"]),
+    years() {
+      // create last 100 years array
+      const year = new Date().getFullYear();
+      return Array.from(
+        { length: year - 1900 },
+        (value, index) => 1901 + index
+      ).reverse();
     },
   },
 };

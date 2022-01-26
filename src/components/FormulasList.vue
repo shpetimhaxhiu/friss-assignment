@@ -1,6 +1,6 @@
 <template>
   <div class="table-responsive">
-    <table v-if="formulas.length > 0" class="table table-hover">
+    <table class="table table-hover">
       <thead>
         <tr>
           <th>Make Name</th>
@@ -11,7 +11,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="formula in formulas" :key="formula.id">
+        <tr v-for="formula in allFormulas" :key="formula.id">
           <td>
             {{ formula.makeName === "" ? "Any Make" : formula.makeName }}
           </td>
@@ -34,7 +34,7 @@
             </span>
           </td>
           <td>
-            <span class="badge" v-bind:class="riskClass(formula.risk)">{{
+            <span class="badge" :class="riskClass(formula.risk)">{{
               formula.risk
             }}</span>
           </td>
@@ -42,7 +42,7 @@
             <button
               type="button"
               class="btn btn-sm btn-danger"
-               @click="confirmDelete(formula.id)"
+              @click="confirmDelete(formula.id)"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -61,43 +61,18 @@
         </tr>
       </tbody>
     </table>
-    <h3 v-else class="text-center">No data to show</h3>
+    <!-- <h3 class="text-center">No data to show</h3> -->
   </div>
 </template>
 
 
 <script>
-import axios from "axios";
+import { mapGetters, mapActions } from "vuex";
+
 export default {
   name: "FormulasList",
-  data() {
-    return {
-      formulas: [],
-    };
-  },
-  mounted() {
-    axios
-      .get("http://localhost:3000/formulas/")
-      .then((response) => {
-        this.formulas = response.data;
-      })
-      .catch(this.handleErrors);
-  },
   methods: {
-    confirmDelete(id) {
-        this.$bvModal.msgBoxConfirm('Do you really want to delete this rule?', {
-          title: 'Please Confirm',
-          okVariant: 'danger',
-          hideHeaderClose: false,
-          centered: true
-        })
-          .then(value => {
-            if(value === true) {
-              this.deleteFormula(id);
-            }
-          })
-          .catch(this.handleErrors)
-      },
+    ...mapActions(["fetchFormulas", "deleteFormula"]),
     riskClass(value) {
       if (value === "high") {
         return "bg-danger";
@@ -106,20 +81,26 @@ export default {
       } else {
         return "bg-info";
       }
-    },    
-    deleteFormula(id) {
-        axios
-          .delete("http://localhost:3000/formulas/" + id)
-          .then((response) => {
-            console.log(response);
-            const index = this.formulas.findIndex(
-              (formula) => formula.id === id
-            );
-            if (~index)
-              this.formulas.splice(index, 1);
-          })
-          .catch(this.handleErrors);
     },
+    confirmDelete(id) {
+      this.$bvModal
+        .msgBoxConfirm("Do you really want to delete this rule?", {
+          title: "Please Confirm",
+          okVariant: "danger",
+          hideHeaderClose: true,
+          centered: true,
+        })
+        .then((value) => {
+          if (value === true) {
+            this.deleteFormula(id);
+          }
+        })
+        .catch(this.handleErrors);
+    },
+  },
+  computed: mapGetters(["allFormulas"]),
+  created() {
+    this.fetchFormulas();
   },
 };
 </script>

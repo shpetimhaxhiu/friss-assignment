@@ -3,392 +3,54 @@
     {
       "makeName": "",
       "modelName": "",
-      "yearComparisonType": false,
-      "year": false,
+      "yearComparisonType": "<",
+      "year": 2000,
       "fuelType": [
+        "diesel",
+        "petrol",
         "electric"
       ],
-      "risk": "medium",
-      "id": 24
+      "risk": "high",
+      "id": 1
     },
     {
-      "makeName": "Model S",
-      "modelName": "",
+      "makeName": false,
+      "modelName": false,
       "yearComparisonType": "<",
-      "year": 2010,
-      "fuelType": [],
-      "risk": "medium",
-      "id": 27
-    },
-    {
-      "makeName": "TOYOTA",
-      "modelName": "",
-      "yearComparisonType": "<",
-      "year": false,
-      "fuelType": [],
-      "risk": "medium",
-      "id": 30
-    },
-    {
-      "makeName": "JAGUAR",
-      "modelName": "",
-      "yearComparisonType": "<",
-      "year": 1980,
+      "year": 2005,
       "fuelType": [
         "electric",
         "petrol",
         "diesel"
       ],
-      "risk": "high",
-      "id": 34
-    },
-    {
-      "makeName": "ASTON MARTIN",
-      "modelName": "",
-      "yearComparisonType": false,
-      "year": false,
-      "fuelType": [],
       "risk": "medium",
-      "id": 37
+      "id": 2
     },
     {
-      "makeName": "TESLA",
-      "modelName": "Model 3",
+      "makeName": false,
+      "modelName": false,
       "yearComparisonType": false,
-      "year": false,
+      "year": 2010,
       "fuelType": [
+        "electric",
         "petrol",
-        "electric"
+        "diesel"
       ],
-      "risk": "medium",
-      "id": 39
-    },
-    {
-      "makeName": "ASTON MARTIN",
-      "modelName": "",
-      "yearComparisonType": false,
-      "year": false,
-      "fuelType": [],
-      "risk": "medium",
-      "id": 40
+      "risk": "low",
+      "id": 3
     },
     {
       "makeName": "",
       "modelName": "",
       "yearComparisonType": "<",
       "year": 2000,
-      "fuelType": [],
-      "risk": "high",
-      "id": 41
-    },
-    {
-      "makeName": "ASTON MARTIN",
-      "modelName": "",
-      "yearComparisonType": false,
-      "year": false,
-      "fuelType": [],
-      "risk": "medium",
-      "id": 42
-    },
-    {
-      "makeName": "TESLA",
-      "modelName": "",
-      "yearComparisonType": false,
-      "year": false,
-      "fuelType": [],
-      "risk": "medium",
-      "id": 43
-    },
-    {
-      "makeName": "JAGUAR",
-      "modelName": "",
-      "yearComparisonType": false,
-      "year": false,
-      "fuelType": [],
-      "risk": "medium",
-      "id": 44
-    },
-    {
-      "makeName": "ASTON MARTIN",
-      "modelName": "",
-      "yearComparisonType": false,
-      "year": false,
-      "fuelType": [],
-      "risk": "medium",
-      "id": 45
-    },
-    {
-      "makeName": "MASERATI",
-      "modelName": "",
-      "yearComparisonType": false,
-      "year": false,
-      "fuelType": [],
-      "risk": "medium",
-      "id": 46
-    },
-    {
-      "makeName": "MASERATI",
-      "modelName": "",
-      "yearComparisonType": false,
-      "year": false,
-      "fuelType": [],
-      "risk": "medium",
-      "id": 47
-    },
-    {
-      "makeName": "TESLA",
-      "modelName": "Model S",
-      "yearComparisonType": "<",
-      "year": 1958,
       "fuelType": [
         "electric",
         "petrol",
         "diesel"
       ],
-      "risk": "medium",
-      "id": 48
-    },
-    {
-      "makeName": "ASTON MARTIN",
-      "modelName": "",
-      "yearComparisonType": false,
-      "year": false,
-      "fuelType": [],
-      "risk": "medium",
-      "id": 49
-    },
-    {
-      "makeName": "ASTON MARTIN",
-      "modelName": "",
-      "yearComparisonType": false,
-      "year": false,
-      "fuelType": [],
-      "risk": "medium",
-      "id": 50
-    },
-    {
-      "makeName": "ASTON MARTIN",
-      "modelName": "V8 Vantage",
-      "yearComparisonType": false,
-      "year": false,
-      "fuelType": [],
-      "risk": "medium",
-      "id": 51
-    },
-    {
-      "makeName": "",
-      "modelName": "",
-      "yearComparisonType": "<",
-      "year": 2010,
-      "fuelType": [],
-      "risk": "medium",
-      "id": 52
-    },
-    {
-      "makeName": "ASTON MARTIN",
-      "modelName": "",
-      "yearComparisonType": false,
-      "year": false,
-      "fuelType": [],
-      "risk": "medium",
-      "id": 53
-    },
-    {
-      "makeName": "JAGUAR",
-      "modelName": "",
-      "yearComparisonType": false,
-      "year": false,
-      "fuelType": [],
-      "risk": "medium",
-      "id": 54
-    },
-    {
-      "makeName": "ASTON MARTIN",
-      "modelName": "",
-      "yearComparisonType": false,
-      "year": false,
-      "fuelType": [],
-      "risk": "medium",
-      "id": 55
-    },
-    {
-      "makeName": "ASTON MARTIN",
-      "modelName": "",
-      "yearComparisonType": false,
-      "year": false,
-      "fuelType": [],
-      "risk": "medium",
-      "id": 56
-    },
-    {
-      "makeName": "TESLA",
-      "modelName": "",
-      "yearComparisonType": false,
-      "year": false,
-      "fuelType": [],
-      "risk": "medium",
-      "id": 57
-    },
-    {
-      "makeName": "TESLA",
-      "modelName": "",
-      "yearComparisonType": false,
-      "year": false,
-      "fuelType": [],
-      "risk": "medium",
-      "id": 58
-    },
-    {
-      "makeName": "TESLA",
-      "modelName": "",
-      "yearComparisonType": false,
-      "year": false,
-      "fuelType": [],
-      "risk": "medium",
-      "id": 59
-    },
-    {
-      "makeName": "TESLA",
-      "modelName": "",
-      "yearComparisonType": false,
-      "year": false,
-      "fuelType": [],
-      "risk": "medium",
-      "id": 60
-    },
-    {
-      "makeName": "TESLA",
-      "modelName": "",
-      "yearComparisonType": false,
-      "year": false,
-      "fuelType": [],
-      "risk": "medium",
-      "id": 61
-    },
-    {
-      "makeName": "ASTON MARTIN",
-      "modelName": "",
-      "yearComparisonType": false,
-      "year": false,
-      "fuelType": [],
-      "risk": "medium",
-      "id": 62
-    },
-    {
-      "makeName": "ASTON MARTIN",
-      "modelName": "",
-      "yearComparisonType": false,
-      "year": false,
-      "fuelType": [],
-      "risk": "medium",
-      "id": 63
-    },
-    {
-      "makeName": "ASTON MARTIN",
-      "modelName": "",
-      "yearComparisonType": false,
-      "year": false,
-      "fuelType": [],
-      "risk": "medium",
-      "id": 64
-    },
-    {
-      "makeName": "TESLA",
-      "modelName": "",
-      "yearComparisonType": false,
-      "year": false,
-      "fuelType": [],
-      "risk": "medium",
-      "id": 65
-    },
-    {
-      "makeName": "BMW",
-      "modelName": "",
-      "yearComparisonType": false,
-      "year": false,
-      "fuelType": [],
-      "risk": "medium",
-      "id": 66
-    },
-    {
-      "makeName": "TESLA",
-      "modelName": "",
-      "yearComparisonType": false,
-      "year": false,
-      "fuelType": [],
-      "risk": "medium",
-      "id": 67
-    },
-    {
-      "makeName": "MINI",
-      "modelName": "",
-      "yearComparisonType": false,
-      "year": false,
-      "fuelType": [],
-      "risk": "medium",
-      "id": 68
-    },
-    {
-      "makeName": "TESLA",
-      "modelName": "Model S",
-      "yearComparisonType": false,
-      "year": false,
-      "fuelType": [],
-      "risk": "medium",
-      "id": 69
-    },
-    {
-      "makeName": "TOYOTA",
-      "modelName": "",
-      "yearComparisonType": false,
-      "year": false,
-      "fuelType": [],
-      "risk": "medium",
-      "id": 70
-    },
-    {
-      "makeName": "LAMBORGHINI",
-      "yearComparisonType": false,
-      "year": false,
-      "fuelType": [],
-      "risk": "medium",
-      "id": 71
-    },
-    {
-      "makeName": "ASTON MARTIN",
-      "modelName": "",
-      "yearComparisonType": false,
-      "year": false,
-      "fuelType": [],
-      "risk": "medium",
-      "id": 72
-    },
-    {
-      "makeName": "CHEVROLET",
-      "modelName": false,
-      "yearComparisonType": false,
-      "year": false,
-      "fuelType": [],
-      "risk": "medium",
-      "id": 73
-    },
-    {
-      "makeName": "SATURN",
-      "modelName": false,
-      "yearComparisonType": false,
-      "year": false,
-      "fuelType": [],
-      "risk": "medium",
-      "id": 74
-    },
-    {
-      "makeName": "MAKING YOU MOBILE",
-      "modelName": "",
-      "yearComparisonType": false,
-      "year": false,
-      "fuelType": [],
-      "risk": "high",
-      "id": 75
+      "risk": "low",
+      "id": 4
     }
   ]
 }
