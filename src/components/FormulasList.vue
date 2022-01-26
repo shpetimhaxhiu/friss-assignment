@@ -1,6 +1,6 @@
 <template>
   <div class="table-responsive">
-    <table class="table table-hover">
+    <table v-if="allFormulas.length > 0" class="table table-hover">
       <thead>
         <tr>
           <th>Make Name</th>
@@ -61,7 +61,7 @@
         </tr>
       </tbody>
     </table>
-    <!-- <h3 class="text-center">No data to show</h3> -->
+    <h3 v-else class="text-center">No data to show</h3>
   </div>
 </template>
 

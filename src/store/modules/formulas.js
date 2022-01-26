@@ -12,7 +12,7 @@ const getters = {
 }
 const actions = {
     async fetchFormulas({ commit }) {
-        const response = await axios.get('http://localhodst:3000/formulas/')
+        const response = await axios.get('http://localhost:3000/formulas/')
         commit("setFormulas", response.data)
     },
     async addFormula({ commit }, formula) {

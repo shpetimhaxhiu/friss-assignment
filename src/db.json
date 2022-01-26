@@ -14,32 +14,6 @@
       "id": 1
     },
     {
-      "makeName": false,
-      "modelName": false,
-      "yearComparisonType": "<",
-      "year": 2005,
-      "fuelType": [
-        "electric",
-        "petrol",
-        "diesel"
-      ],
-      "risk": "medium",
-      "id": 2
-    },
-    {
-      "makeName": false,
-      "modelName": false,
-      "yearComparisonType": false,
-      "year": 2010,
-      "fuelType": [
-        "electric",
-        "petrol",
-        "diesel"
-      ],
-      "risk": "low",
-      "id": 3
-    },
-    {
       "makeName": "",
       "modelName": "",
       "yearComparisonType": "<",
@@ -51,6 +25,30 @@
       ],
       "risk": "low",
       "id": 4
+    },
+    {
+      "makeName": "",
+      "modelName": "",
+      "yearComparisonType": "<",
+      "year": 2000,
+      "fuelType": [
+        "electric",
+        "petrol",
+        "diesel"
+      ],
+      "risk": "high",
+      "id": 6
+    },
+    {
+      "makeName": "",
+      "modelName": "",
+      "yearComparisonType": false,
+      "year": false,
+      "fuelType": [
+        "electric"
+      ],
+      "risk": "medium",
+      "id": 7
     }
   ]
 }
